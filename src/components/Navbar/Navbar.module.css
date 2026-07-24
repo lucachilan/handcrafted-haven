@@ -1,0 +1,53 @@
+/* ============================================
+   header.module.css — Header / Navigation Styles
+   ============================================ */
+
+/* ─── Header Base ─── */
+.header {
+  position: fixed;
+  display: flex;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 1rem 0;
+  transition: all 0.3s ease;
+  align-items: center;
+}
+
+/* ─── Logo ─── */
+.logoIcon {
+  display: flex;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+.inner{
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+}
+
+/* ─── Nav Links ─── */
+.nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.nav__link {
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+  justify-content: space-evenly;
+  /* Add your link color, hover styles */
+}
+
+.nav__link:hover {
+  /* Hover state */
+}
+
+/* ─── Header Actions ─── */
+.header__actions {
+
+}

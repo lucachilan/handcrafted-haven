@@ -1,0 +1,21 @@
+/* ============================================
+   footer.module.css — Footer Styles
+   ============================================ */
+
+/* ─── Footer Base ─── */
+.footer {
+  padding: 3rem 0;
+  background: var(--color-charcoal);
+  color: #fff;
+  /* Add other base footer styles */
+}
+
+/* You can add variations like:
+.footer--dark {
+  background: #123456;
+}
+
+.footer--light {
+  background: #f5f5f5;
+  color: #111;
+} */
