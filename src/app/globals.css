@@ -1,19 +1,22 @@
+@import "./animation.module.css"; 
 /* ============================================
    globals.css
    ============================================ */
 
 /* ─── CSS Variables ─── */
 :root {
-  /* Colors — Add your palette here */
-  --color-primary:   #ff7828 ; 
-  --color-secondary:  ; 
-  --color-bg:         ; 
-  --color-text:       ; 
-  --color-accent:     ; 
+  /* Colors */
+  --color-primary: #ff7828; 
+  --color-secondary: #1D3557;
+  --color-bg: #FAF6F1; 
+  --color-bg-secondary:#a7631c;  
+  --color-text: #000; 
+  --color-accent: ; 
+  --color-bg-transparent: #fffffff1;
 
-  /* Typography — Add your fonts here */
-  --font-heading: ; 
-  --font-body:    ; 
+  /* Typography */
+  --font-heading: var(--font-caveat-brush); 
+  --font-body:    var(--font-quicksand); 
 
   /* Spacing */
   --space-sm:  0.5rem;
