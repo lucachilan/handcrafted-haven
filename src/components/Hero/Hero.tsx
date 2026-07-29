@@ -1,26 +1,25 @@
 import Image from "next/image";
 import styles from "@/components/Hero/hero.module.css"
+import Link from "next/link";
 
 
 export default function Hero() {
 
     return (
         <section className={styles.hero_wrapper}>
-            {/* LCP image: preloaded and eagerly loaded so the browser
-                discovers it as early as possible. */}
             <div className={styles.hero_content}>
                 <h1 id="hero-title" className={styles.title}>Modern Craft. Timeless pieces.</h1>
                 <div className={styles.ctaHero}>
-                    <a href="/products">
+                    <Link href="/products">
                         <button className={styles.buy}>
                             Shop
                         </button>
-                    </a>
-                    <a href="/artisans">
+                    </Link>
+                    <Link href="/artisans">
                         <button className={styles.meet}>
                             Meet the Artisans
                         </button>
-                    </a>
+                    </Link>
                 </div>
             </div>
             <Image

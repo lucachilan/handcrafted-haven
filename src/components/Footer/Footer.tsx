@@ -23,7 +23,7 @@ const columns = [
     {
         heading: "Account",
         links: [
-            { label: "Sign In", href: "/login" },
+            { label: "Sign In", href: "/auth/login" },
             { label: "Orders", href: "/account/orders" },
             { label: "Settings", href: "/account/settings" }
         ]
