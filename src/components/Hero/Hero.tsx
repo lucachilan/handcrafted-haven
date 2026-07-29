@@ -11,12 +11,16 @@ export default function Hero() {
             <div className={styles.hero_content}>
                 <h1 id="hero-title" className={styles.title}>Modern Craft. Timeless pieces.</h1>
                 <div className={styles.ctaHero}>
-                    <button className={styles.buy}>
-                        Shop
-                    </button>
-                    <button className={styles.meet}>
-                        Meet the Artisans
-                    </button>
+                    <a href="/products">
+                        <button className={styles.buy}>
+                            Shop
+                        </button>
+                    </a>
+                    <a href="/artisans">
+                        <button className={styles.meet}>
+                            Meet the Artisans
+                        </button>
+                    </a>
                 </div>
             </div>
             <Image

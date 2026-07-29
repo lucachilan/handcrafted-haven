@@ -25,9 +25,9 @@ export default async function Navbar() {
                         />
                     </Link>
                     <nav className={styles.nav} aria-label="Primary">
-                        <Link href="/#products" className={styles.nav__link}>Products</Link>
-                        <Link href="/#artisans" className={styles.nav__link}>Artisans</Link>
-                        <Link href="/#join" className={styles.nav__link}>Become a seller</Link>
+                        <Link href="/products" className={styles.nav__link}>Products</Link>
+                        <Link href="/artisans" className={styles.nav__link}>Artisans</Link>
+                        <Link href="/join" className={styles.nav__link}>Become a seller</Link>
                     </nav>
                     <div className={styles.symbolsContainer}>
                         {/* Suspense is required because NavbarSearch calls useSearchParams() */}
@@ -38,7 +38,7 @@ export default async function Navbar() {
                         }>
                             <NavbarSearch placeholder="Search products" className={styles.element} />
                         </Suspense>
-                        <Link href="/#login" className={styles.element}>
+                        <Link href="/login" className={styles.element}>
                             <Image
                                 src="/symbols/login.svg"
                                 alt="login"
