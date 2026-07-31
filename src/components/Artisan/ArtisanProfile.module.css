@@ -6,7 +6,7 @@
 
 .header {
   background-color: #fff;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-lg);;
   padding: 2rem;
   margin-bottom: 3rem;
   display: flex;

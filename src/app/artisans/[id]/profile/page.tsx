@@ -48,7 +48,10 @@ export default async function ArtisanProfilePage({ params }: ArtisanProfilePage)
             id: artisan.id,
             name: artisan.name,
             profileImageUrl: artisan.profileImageUrl || "/profile-placeholder.png",
-            products: artisan.products,
+            products: artisan.products.map(p => ({
+              ...p,
+              price: p.price.toNumber() as any,
+            })),
             bio: artisan.bio,
             productCount: artisan.products.length,
           }}

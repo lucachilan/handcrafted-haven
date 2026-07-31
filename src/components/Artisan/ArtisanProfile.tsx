@@ -1,5 +1,8 @@
+"use client";
+
 import { Product, Category, Image as PrismaImage } from "@prisma/client";
 import Image from "next/image";
+import {useState} from "react"
 import ProductCard from "../ProductCard/ProductCard";
 import styles from "./ArtisanProfile.module.css";
 
@@ -17,19 +20,28 @@ interface ArtisanProfileProps {
     }
 }
 
+const PLACEHOLDER_IMAGE = "/profile-placeholder.png";
+
 export default function ArtisanProfile({ artisan }: ArtisanProfileProps) {
+    const initialImage = artisan.profileImageUrl || PLACEHOLDER_IMAGE;
+    const [imgSrc, setImgSrc] = useState<string>(initialImage);
     return (
         <div className={styles.container}>
             {/* Profile Header */}
             <div className={styles.header}>
                 <div className={styles.avatarContainer}>
                     <Image
-                        src={artisan.profileImageUrl || "/profile-placeholder.png"}
+                        src= {imgSrc}
                         alt={artisan.name || "Artisan"}
                         fill
                         className={styles.avatar}
                         sizes="(max-width: 768px) 12rem, 12rem"
                         priority
+                        onError={() => {
+                            if (imgSrc !== PLACEHOLDER_IMAGE) {
+                                setImgSrc(PLACEHOLDER_IMAGE);
+                            }
+                        }}
                     />
                 </div>
                 <div className={styles.info}>

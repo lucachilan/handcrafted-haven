@@ -33,16 +33,17 @@
     text-align: center;
     grid-area: title;
     font-size: 4rem;
-    background-image: linear-gradient(150deg, var(--color-secondary), #fff);
+    background-image: linear-gradient(150deg, var(--color-text-secondary), #fff);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     filter: drop-shadow(4px 3px #fff);
     color: transparent;
-    font-family: var(--font-page-title);
+    font-family: var(--font-header);
     letter-spacing: 0.01cap;
-    
 }
+
+
 
 
 .ctaHero {
@@ -58,7 +59,7 @@
         background-color: #fff;
         width: 200px;
         padding: 1rem;
-        border-radius: 1rem;
+        border-radius: var(--radius-lg);
         color: var(--color-text-secondary);
         font-weight: 800;
         font-size: 1.3rem;

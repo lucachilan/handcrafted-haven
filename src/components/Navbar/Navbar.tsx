@@ -31,13 +31,13 @@ export default async function Navbar() {
                     </nav>
                     <div className={styles.symbolsContainer}>
                         {/* Suspense is required because NavbarSearch calls useSearchParams() */}
-                        <Suspense fallback={
+                        {/* <Suspense fallback={
                             <button type="button" aria-label="Toggle search" className={styles.searchToggle}>
                                 <Image src="/symbols/search.webp" alt="" width={32} height={32} unoptimized />
                             </button>
                         }>
                             <NavbarSearch placeholder="Search products" className={styles.element} />
-                        </Suspense>
+                        </Suspense> */}
                         <Link href="/auth/login" className={styles.element}>
                             <Image
                                 src="/symbols/login.svg"

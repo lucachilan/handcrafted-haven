@@ -125,14 +125,17 @@ button {
   ===============================  */
 
 .title {
-  font-family: var(--font-page-title);
-  padding: 1rem 2rem;
+  font-family: var(--font-header);
   font-size: 4rem;
   font-weight: 200;
   color: var(--color-secondary);
   letter-spacing: 0.05cap;
+  text-align: center;
 }
 
+.subtitle {
+  text-align: center;
+}
 
 
 /*  utility : containers  */

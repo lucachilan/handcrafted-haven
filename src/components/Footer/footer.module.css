@@ -46,7 +46,7 @@
   padding: 0.5rem 1rem;
   color: #fff;
   font-weight: 600;
-  border-radius: 1rem;
+  border-radius: var(--radius-lg);
   box-sizing: border-box;
 }
 

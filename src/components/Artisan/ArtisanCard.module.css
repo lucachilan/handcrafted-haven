@@ -7,7 +7,7 @@
     padding: 1rem;
     background-color: var(--color-bg);
     
-    & img {
+    & .avatar {
         width: 250px;
         height: 250px;
         border-radius: 50%;
@@ -16,12 +16,11 @@
     }
     
     & .info {
-        box-shadow: 5px 5px 5px var(--color-secondary);
         background-color: #fff;
         margin: 1rem 0;
-        border-radius: 1rem;
+        border-radius: var(--radius-lg);;
         padding: 1rem;
-
+        
         & .artisan_name {
             font-family: var(--font-header);
             color: var(--color-text-secondary);
@@ -29,6 +28,13 @@
     }
 
     &:hover {
-        transform: translateY(-10px);
+        transform: translateY(-2px);
+
+        & .info{
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        & .avatar {
+            transform: scale(1.02);
+        }
     }
 }
