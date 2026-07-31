@@ -1,5 +1,4 @@
 import { prisma } from "../src/lib/prisma";
-import { Role } from "@prisma/client";
 import bcrypt from "bcryptjs";
 
 async function main() {
@@ -7,10 +6,7 @@ async function main() {
 
   // Clear existing data to avoid foreign key or unique constraint conflicts
   await prisma.image.deleteMany({});
-  await prisma.cartItem.deleteMany({});
   await prisma.orderItem.deleteMany({});
-  await prisma.cart.deleteMany({});
-  await prisma.order.deleteMany({});
   await prisma.product.deleteMany({});
   await prisma.category.deleteMany({});
   await prisma.user.deleteMany({});
@@ -23,7 +19,7 @@ async function main() {
       email: "admin@haven.com",
       password: passwordHash,
       name: "admin",
-      role: Role.ADMIN,
+      role: "ADMIN",
     },
   });
 
@@ -35,7 +31,7 @@ async function main() {
       name: "Luca Chilan",
       bio: "Master woodworker crafting hand-carved home goods from sustainable lumber.",
       profileImageUrl: "https://avatars.githubusercontent.com/u/203291826?v=4",
-      role: Role.ARTISAN,
+      role: "ARTISAN",
     },
   });
 
@@ -46,7 +42,7 @@ async function main() {
       name: "Peter Parker",
       bio: "Hand-thrown stoneware focused on precision, balance, and durability.",
       profileImageUrl: "https://static.wikia.nocookie.net/the-amazing-spiderman-universe/images/5/5b/Peterbenjaminparker.jpg/revision/latest?cb=20121103052021&path-prefix=es",
-      role: Role.ARTISAN,
+      role: "ARTISAN",
     },
   });
 
@@ -58,7 +54,7 @@ async function main() {
       bio: "Crafting heavy-duty leather armor and accessories from the shadowy depths.",
       profileImageUrl:
         "https://static.wikia.nocookie.net/bane/images/a/a6/Imagename.jpg/revision/latest/scale-to-width-down/250?cb=20150920115058",
-      role: Role.ARTISAN,
+      role: "ARTISAN",
     },
   });
 
@@ -69,7 +65,7 @@ async function main() {
       name: "Barry Allen",
       bio: "Speedy artisan producing high-grade modern textiles and home accents.",
       profileImageUrl: "https://static.tvtropes.org/pmwiki/pub/images/1_258_5.jpg",
-      role: Role.ARTISAN,
+      role: "ARTISAN",
     },
   });
 
