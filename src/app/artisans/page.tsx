@@ -38,7 +38,7 @@ export default async function Page() {
           </div>
         ) : (
           <div className="artisans-list">
-            {artisans.map((artisan) => (
+            {artisans.map((artisan: any) => (
               <ArtisanCard
                 key={artisan.id}
                 artisan={{
