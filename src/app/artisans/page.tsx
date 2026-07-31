@@ -1,15 +1,59 @@
+import { prisma } from "@/lib/prisma"; // Adjust path if needed
 import Navbar from "@/components/Navbar/Navbar";
-import Footer from "@/components/Footer/Footer"
-// import Hero from "@/components/Hero/Hero";
-
-
+import Footer from "@/components/Footer/Footer";
+import ArtisanCard from "@/components/Artisan/ArtisanCard"; // Adjust import path if needed
+import Blank from "@/components/Blank";
 
 export default async function Page() {
-    return(
-        <>
-            <Navbar />
-            {/* <Hero /> */}
-            <Footer />
-        </>
-    )
-} 
+  const artisans = await prisma.user.findMany({
+    where: { role: "ARTISAN" },
+    select: {
+      id: true,
+      name: true,
+      profileImageUrl: true,
+      email: true,
+      _count: {
+        select: { products: true },
+      },
+      bio: true,
+    },
+    orderBy: { name: "asc" },
+  });
+
+  return (
+      <div className="min-h-screen flex flex-col justify-between bg-stone-50">
+        <Navbar />
+        <main>
+        <Blank />
+                <h1 className="title">
+                    Meet Our Artisans
+                </h1>
+                <p className="subtitle">
+                    Discover the talented craftspeople behind our handmade items.
+                </p>
+
+        {artisans.length === 0 ? (
+          <div className="no-artisans">
+            No artisans found at this time.
+          </div>
+        ) : (
+          <div className="artisans-list">
+            {artisans.map((artisan) => (
+              <ArtisanCard
+                key={artisan.id}
+                artisan={{
+                  id: artisan.id,
+                  name: artisan.name,
+                  profileImageUrl: artisan.profileImageUrl || "/profile-placeholder.png",
+                  productCount: artisan._count.products,
+                  bio: artisan.bio,
+                }}
+              />
+            ))}
+          </div>
+        )}
+      </main>
+      <Footer />
+    </div>
+  );
+}

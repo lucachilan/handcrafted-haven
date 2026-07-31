@@ -9,14 +9,16 @@
   --color-primary: #ff7828; 
   --color-secondary: #1D3557;
   --color-bg: #FAF6F1; 
-  --color-bg-secondary:#a7631c;  
+  --color-bg-darker: #afada9;
   --color-text: #000; 
-  --color-accent: ; 
+  --color-text-secondary:#a7631c;  
+  --color-accent: #; 
   --color-bg-transparent: #fffffff1;
 
   /* Typography */
   --font-heading: var(--font-caveat-brush); 
   --font-body:    var(--font-quicksand); 
+  --font-page-title: var(--font-caesar-dressing);
 
   /* Spacing */
   --space-sm:  0.5rem;
@@ -51,6 +53,12 @@ body {
 img {
   max-width: 100%;
   display: block;
+}
+
+.blank {
+  width: 100vw;
+  height: 130px;
+  background-image: linear-gradient(180deg, var(--color-bg-darker), var(--color-bg));
 }
 
 a {
@@ -110,3 +118,30 @@ button {
   padding: 1rem 2rem;
   font-size: 1.05rem;
 }
+
+
+/*===============================
+        text elements 
+  ===============================  */
+
+.title {
+  font-family: var(--font-page-title);
+  padding: 1rem 2rem;
+  font-size: 4rem;
+  font-weight: 200;
+  color: var(--color-secondary);
+  letter-spacing: 0.05cap;
+}
+
+
+
+/*  utility : containers  */
+
+.artisans-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4rem 1rem;
+  margin: 1rem auto;
+  justify-content: center;
+}
+

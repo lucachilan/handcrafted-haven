@@ -2,13 +2,27 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    /* Next.js 16 requires an explicit quality allowlist */
-    qualities: [75, 90],
-    /* Prefer AVIF (≈20% smaller), fall back to WebP */
-    formats: ["image/avif", "image/webp"],
-    /* Cache optimized images for 7 days to reduce re-processing */
-    minimumCacheTTL: 604800,
+    remotePatterns : [
+      {protocol: "https",  hostname: "static.tvtropes.org"},
+      {protocol: "https",  hostname: "static.wikia.nocookie.net"},
+      {protocol: "https",  hostname: "images.unsplash.com"},
+      {protocol: "https",  hostname: "avatars.githubusercontent.com"},
+      
+      
+    ]  
   },
+  async redirects() {
+    return [
+      {
+        source: "/artisan",
+        destination: "/dashboard/artisan/products",
+        permanent: true
+      },
+    ];
+  }
 };
+
+
+
 
 export default nextConfig;

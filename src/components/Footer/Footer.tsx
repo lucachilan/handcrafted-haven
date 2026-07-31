@@ -42,7 +42,7 @@ export default async function Footer() {
                         height={80}
                         unoptimized
                         className={styles.logoIcon}
-                        loading="lazy"
+                        priority
                     />
                 </Link>
             </div>
