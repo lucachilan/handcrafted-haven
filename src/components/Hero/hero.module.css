@@ -1,7 +1,8 @@
 /* ─── Hero wrapper: required for next/image fill ─── */
 .hero_wrapper {
+    top: -130px;
     position: relative;
-    width: 85%;
+    width: 100%;
     height: 850px;
     margin: auto;
     border-radius: 0 0 1rem 1rem;

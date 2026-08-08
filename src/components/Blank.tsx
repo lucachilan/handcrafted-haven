@@ -1,4 +1,4 @@
-export default async function Blank() {
+export default function Blank() {
     return (
         <>
         <div className="blank"></div>

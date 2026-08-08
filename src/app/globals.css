@@ -30,6 +30,8 @@
   --radius-sm: 4px;
   --radius-md: 8px;
   --radius-lg: 16px;
+
+  --shadow-hv: 0 4px 12px rgba(0,0,0,0.15);
 }
 
 /* ─── Reset ─── */
@@ -46,8 +48,12 @@ html {
 body {
   font-family: var(--font-body);
   color: var(--color-text);
-  background-color: var(--color-bg);
+  background-color: var(--color-bg); 
   line-height: 1.6;
+}
+
+main {
+  min-height: 60vh;
 }
 
 img {
@@ -110,8 +116,9 @@ button {
 }
 
 .btn-secondary {
-  background: transparent;
+  background: var(--color-secondary);
   border: 1.5px solid currentColor;
+  color: #fff;
 }
 
 .btn-lg {

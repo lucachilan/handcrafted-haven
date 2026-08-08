@@ -30,7 +30,7 @@ const columns = [
     }
 ];
 
-export default async function Footer() {
+export default function Footer() {
     return (
         <footer className={styles.footer}>
             <div className={styles.brand}>
