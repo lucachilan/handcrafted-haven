@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
-import Blank from "@/components/Blank";
 import styles from "./page.module.css";
 
 interface SuccessPageProps {

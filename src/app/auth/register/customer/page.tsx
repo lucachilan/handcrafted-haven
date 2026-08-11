@@ -1,7 +1,6 @@
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
 // import Hero from "@/components/Hero/Hero";
-import Blank from "@/components/Blank";
 import styles from "@/app/auth/form.module.css";
 import Link from "next/link";
 import RegisterCustomerForm from "../customer/RegisterCustomerForm";

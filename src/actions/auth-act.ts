@@ -1,11 +1,11 @@
 "use server";
 
-import { prisma } from "@/lib/prisma";
-import bcrypt from "bcryptjs";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { prisma } from "@/lib/prisma";
 import { Role } from "@prisma/client";
 import { normalizeUrl } from "@/lib/image-profile-check";
+import bcrypt from "bcryptjs";
 
 export type LoginActionState = {
   error: string | null;
@@ -13,7 +13,7 @@ export type LoginActionState = {
 
 export async function loginAction(
   _prevState: LoginActionState,
-  formData: FormData
+  formData: FormData,
 ): Promise<LoginActionState> {
   const emailInput = formData.get("email") as string;
   const email = emailInput?.trim().toLowerCase();
@@ -57,7 +57,7 @@ export async function loginAction(
         "&redirect=" +
         encodeURIComponent("/dashboard/artisan/products") +
         "&buttonText=" +
-        encodeURIComponent("Return to Dashboard")
+        encodeURIComponent("Return to Dashboard"),
     );
   }
 
@@ -68,7 +68,7 @@ export async function loginAction(
         "&redirect=" +
         encodeURIComponent("/dashboard/admin/products") +
         "&buttonText=" +
-        encodeURIComponent("Return to Admin Dashboard")
+        encodeURIComponent("Return to Admin Dashboard"),
     );
   }
 
@@ -78,7 +78,7 @@ export async function loginAction(
       "&redirect=" +
       encodeURIComponent("/dashboard/customer") +
       "&buttonText=" +
-      encodeURIComponent("Go to Dashboard")
+      encodeURIComponent("Go to Dashboard"),
   );
 }
 
@@ -144,20 +144,24 @@ export async function registerAction(formData: FormData) {
   if (role === Role.ARTISAN) {
     redirect(
       "/success?message=" +
-        encodeURIComponent("Your artisan account has been created successfully.") +
+        encodeURIComponent(
+          "Your artisan account has been created successfully.",
+        ) +
         "&redirect=" +
         encodeURIComponent("/dashboard/artisan/products") +
         "&buttonText=" +
-        encodeURIComponent("Return to Dashboard")
+        encodeURIComponent("Return to Dashboard"),
     );
   }
 
   redirect(
     "/success?message=" +
-      encodeURIComponent("Your customer account has been created successfully.") +
+      encodeURIComponent(
+        "Your customer account has been created successfully.",
+      ) +
       "&redirect=" +
       encodeURIComponent("/dashboard/customer") +
       "&buttonText=" +
-      encodeURIComponent("Go to Dashboard")
+      encodeURIComponent("Go to Dashboard"),
   );
 }

@@ -5,15 +5,7 @@ import styles from "@/app/auth/form.module.css";
 
 const imageValidationMsg =
   "Invalid URL, try another URL or a valid image extension (.jpg .png .jpeg .webp .gif .svg)";
-const allowedHosts = [
-  "static.wikia.nocookie.net",
-  "images.unsplash.com",
-  "avatars.githubusercontent.com",
-  "instagram.com",
-  "unsplash.com",
-  "imgur.com",
-  "pixabay.com",
-];
+
 
 export default function RegisterArtisanForm() {
   const [profileImageUrl, setProfileImageUrl] = useState("");

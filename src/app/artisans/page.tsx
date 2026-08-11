@@ -2,7 +2,6 @@ import { prisma } from "@/lib/prisma"; // Adjust path if needed
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
 import ArtisanCard from "@/components/Artisan/ArtisanCard"; // Adjust import path if needed
-import Blank from "@/components/Blank";
 
 export default async function Page() {
   const artisans = await prisma.user.findMany({
@@ -33,7 +32,7 @@ export default async function Page() {
           <div className="no-artisans">No artisans found at this time.</div>
         ) : (
           <div className="artisans-list">
-            {artisans.map((artisan: any) => (
+            {artisans.map((artisan) => (
               <ArtisanCard
                 key={artisan.id}
                 artisan={{

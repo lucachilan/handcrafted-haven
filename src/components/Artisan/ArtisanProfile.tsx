@@ -67,7 +67,7 @@ export default function ArtisanProfile({ artisan }: ArtisanProfileProps) {
                     </div>
                 ) : (
                     <div className={styles.emptyState}>
-                        <p>This artisan doesn't have any products yet.</p>
+                        <p>This artisan doesn&apos;t have any products yet.</p>
                     </div>
                 )}
             </div>
