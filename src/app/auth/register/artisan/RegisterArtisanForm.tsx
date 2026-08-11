@@ -1,3 +1,5 @@
+"use client";
+
 import { useMemo, useState } from "react";
 import { registerAction } from "@/actions/auth-act";
 import { normalizeUrl } from "@/lib/image-profile-check";
