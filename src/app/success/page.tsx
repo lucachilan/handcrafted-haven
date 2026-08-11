@@ -23,11 +23,11 @@ export default async function SuccessPage({ searchParams }: SuccessPageProps) {
       <Navbar />
       <main className={`container ${styles.main}`}>
         <section className={`surface-card ${styles.card}`}>
-          <span className="section-label">Success</span>
-          <h1 className={`page-title ${styles.title}`}>{message}</h1>
+          <span className="badge">Success</span>
+          <h1 className={`title`}>{message}</h1>
           <Link
             href={redirectPath}
-            className={`button button--primary button--subtle-lift ${styles.button}`}
+            className={`btn btn-secondary btn-lg btn-center`}
           >
             {buttonText}
           </Link>

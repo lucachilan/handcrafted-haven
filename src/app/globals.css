@@ -134,6 +134,12 @@ button {
   font-size: 1.05rem;
 }
 
+.btn-center {
+  display: block;
+  width: fit-content;
+  margin: auto;
+}
+
 /*===============================
         text elements 
   ===============================  */
@@ -155,6 +161,12 @@ button {
   text-align: center;
 }
 
+.badge {
+  display: block;
+  margin: auto;
+  text-align: center;
+  font-size: 2rem;
+}
 /*  utility : containers  */
 
 .artisans-list {

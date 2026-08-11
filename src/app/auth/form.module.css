@@ -82,7 +82,7 @@
   padding: 1rem;
   gap: 1rem 0;
   margin: auto;
-
+  text-align: center;
   & .otherAuth {
     margin: auto;
     display: block;
@@ -92,4 +92,9 @@
     max-width: 350px;
     padding: 1rem 0;
   }
+}
+
+.flex__vert {
+  display: flex;
+  flex-direction: column;
 }
