@@ -5,12 +5,13 @@ import Footer from "@/components/Footer/Footer";
 import ArtisanProfile from "@/components/Artisan/ArtisanProfile";
 import Blank from "@/components/Blank";
 
-
 interface ArtisanProfilePage {
   params: Promise<{ id: string }>;
 }
 
-export default async function ArtisanProfilePage({ params }: ArtisanProfilePage) {
+export default async function ArtisanProfilePage({
+  params,
+}: ArtisanProfilePage) {
   const { id } = await params;
 
   const artisan = await prisma.user.findFirst({
@@ -30,7 +31,6 @@ export default async function ArtisanProfilePage({ params }: ArtisanProfilePage)
         },
       },
     },
-
   });
 
   if (!artisan) {
@@ -40,26 +40,21 @@ export default async function ArtisanProfilePage({ params }: ArtisanProfilePage)
   return (
     <>
       <Navbar />
-      <Blank />
       <main>
         <ArtisanProfile
           key={artisan.id}
           artisan={{
             id: artisan.id,
             name: artisan.name,
-            profileImageUrl: artisan.profileImageUrl || "/profile-placeholder.png",
-            products: artisan.products.map(p => ({
-              ...p,
-              price: p.price.toNumber() as number,
-            })),
+            profileImageUrl:
+              artisan.profileImageUrl || "/profile-placeholder.png",
+            products: artisan.products,
             bio: artisan.bio,
             productCount: artisan.products.length,
           }}
         />
-
-
       </main>
       <Footer></Footer>
     </>
-  )
+  );
 }
