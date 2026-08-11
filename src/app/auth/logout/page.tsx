@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
-import styles from "./logout.module.css";
+//import styles from "./logout.module.css";
 
 export default function LogoutPage() {
   return (
