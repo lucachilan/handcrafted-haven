@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
 import ArtisanProfile from "@/components/Artisan/ArtisanProfile";
-import Blank from "@/components/Blank";
 
 interface ArtisanProfilePage {
   params: Promise<{ id: string }>;

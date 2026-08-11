@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
-//import styles from "./logout.module.css";
+import styles from "./logout.module.css";
 
 export default function LogoutPage() {
   return (
@@ -17,10 +17,7 @@ export default function LogoutPage() {
           </p>
 
           <div className={styles.actions}>
-            <Link
-              href="/auth/login"
-              className="button button--primary button--subtle-lift"
-            >
+            <Link href="/auth/login" className="button btn-primary">
               Sign in again
             </Link>
             <Link href="/products" className={styles.secondaryLink}>
