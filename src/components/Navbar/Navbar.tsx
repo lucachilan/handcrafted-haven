@@ -1,16 +1,58 @@
-"use client";
+"use server";
 
 import Image from "next/image";
 import Link from "next/link";
 // import NavbarSearch from "./NavbarSearch";
 // import { Suspense } from "react";
 import Blank from "@/components/Blank";
+import { cookies } from "next/headers";
+import { prisma } from "@/lib/prisma";
+import { logoutAction } from "@/actions/auth-act";
 
 import styles from "@/components/Navbar/Navbar.module.css";
 
-export default function Navbar() {
+const LogoutButton = () => {
+  return (
+    <form action={logoutAction}>
+      <button type="submit" className={styles.element} aria-label="logout">
+        <Image
+          src={`/symbols/logout.svg`}
+          alt="logout"
+          width={32}
+          height={32}
+          unoptimized
+          className={styles.login}
+        />
+      </button>
+    </form>
+  );
+};
+
+const LoginButton = () => {
+  return (
+    <Link href={`/auth/login`} className={styles.element}>
+      <Image
+        src={`/symbols/login.svg`}
+        alt="login"
+        width={32}
+        height={32}
+        unoptimized
+        className={styles.login}
+      />
+    </Link>
+  );
+};
+
+export default async function Navbar() {
+  const cookieStore = await cookies();
+  const userId = cookieStore.get("userId")?.value;
+
+  const user = userId
+    ? await prisma.user.findUnique({ where: { id: userId } })
+    : null;
   return (
     <>
+      <Blank />
       <header className={styles.header}>
         <div className={styles.inner}>
           <Link
@@ -38,30 +80,24 @@ export default function Navbar() {
             <Link href="/about" className={styles.nav__link}>
               About us
             </Link>
+            {user ? (
+              <>
+                <Link
+                  href={`/dashboard/${user.role.trim().toLowerCase()}/products`}
+                  className={styles.nav__link}
+                >
+                  Dashboard
+                </Link>
+                <LogoutButton />
+              </>
+            ) : (
+              <>
+                <LoginButton />
+              </>
+            )}
           </nav>
-          <div className={styles.symbolsContainer}>
-            {/* Suspense is required because NavbarSearch calls useSearchParams() */}
-            {/* <Suspense fallback={
-                            <button type="button" aria-label="Toggle search" className={styles.searchToggle}>
-                                <Image src="/symbols/search.webp" alt="" width={32} height={32} unoptimized />
-                            </button>
-                        }>
-                            <NavbarSearch placeholder="Search products" className={styles.element} />
-                        </Suspense> */}
-            <Link href="/auth/login" className={styles.element}>
-              <Image
-                src="/symbols/login.svg"
-                alt="login"
-                width={32}
-                height={32}
-                unoptimized
-                className={styles.login}
-              />
-            </Link>
-          </div>
         </div>
       </header>
-      <Blank />
     </>
   );
 }
