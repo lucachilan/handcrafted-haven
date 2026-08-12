@@ -138,6 +138,21 @@ export async function getProductCategories() {
   });
 }
 
+export async function getProductPriceRange() {
+  const aggregate = await prisma.product.aggregate({
+    _min: { price: true },
+    _max: { price: true },
+  });
+
+  const min = Math.floor(Number(aggregate._min.price ?? 0));
+  const max = Math.max(
+    Math.ceil(Number(aggregate._max.price ?? 0)),
+    min + 1,
+  );
+
+  return { min, max };
+}
+
 export async function getFilteredProducts(filters: ProductCatalogFilters) {
   return prisma.product.findMany({
     where: buildCatalogWhereClause(filters),

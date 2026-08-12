@@ -6,6 +6,7 @@ import Footer from "@/components/Footer/Footer";
 import {
   getFilteredProducts,
   getProductCategories,
+  getProductPriceRange,
 } from "@/actions/product-act";
 import { addToCartAction } from "@/actions/cart-act";
 import AddToCartButton from "@/components/AddToCartButton/AddToCartButton";
@@ -56,7 +57,7 @@ export default async function Page({ searchParams }: ProductsPageProps) {
   const inStock = params.inStock?.trim();
   const sort = params.sort?.trim();
 
-  const [categories, products] = await Promise.all([
+  const [categories, products, priceRange] = await Promise.all([
     getProductCategories(),
     getFilteredProducts({
       categoryId: activeCategoryId,
@@ -67,6 +68,7 @@ export default async function Page({ searchParams }: ProductsPageProps) {
       inStockOnly: inStock,
       sort,
     }),
+    getProductPriceRange(),
   ]);
 
   const activeCategoryName =
@@ -115,6 +117,7 @@ export default async function Page({ searchParams }: ProductsPageProps) {
             <ProductFilter
               categories={categories}
               activeCategoryId={activeCategoryId}
+              priceBounds={priceRange}
               minPrice={minPrice}
               maxPrice={maxPrice}
               inStock={inStock === "1"}
