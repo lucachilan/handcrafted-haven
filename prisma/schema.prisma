@@ -35,6 +35,7 @@ model User {
   cart      Cart?
   orders    Order[]
   products  Product[]
+  reviews   Review[]
 }
 
 model Category {
@@ -58,6 +59,7 @@ model Product {
 
   orderItems  OrderItem[]
   cartItems   CartItem[]
+  reviews     Review[]
 
   @@index([categoryId])
   @@index([artisanId])
@@ -89,6 +91,21 @@ model CartItem {
   quantity  Int      @default(1)
 
   @@unique([cartId, productId])
+}
+
+model Review {
+  id        String   @id @default(uuid())
+  rating    Int
+  title     String?
+  text      String
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@index([productId])
+  @@index([userId])
 }
 
 model Order {
