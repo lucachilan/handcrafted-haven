@@ -1,0 +1,51 @@
+.rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.star {
+  position: relative;
+  display: inline-block;
+  width: var(--star-size, 1.15rem);
+  height: var(--star-size, 1.15rem);
+  flex-shrink: 0;
+}
+
+.svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.empty {
+  fill: #e2dcd4;
+}
+
+.filled {
+  fill: var(--color-primary);
+}
+
+.fillWrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+
+.fillWrap .svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--star-size, 1.15rem);
+  height: var(--star-size, 1.15rem);
+}
+
+.value {
+  margin-left: 0.3rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-text-secondary);
+}

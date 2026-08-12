@@ -1,17 +1,18 @@
+import { Suspense } from "react";
+import Link from "next/link";
+import type { Prisma } from "@prisma/client";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
-import Link from "next/link";
-import Image from "next/image";
-import type { Prisma } from "@prisma/client";
 import {
   getFilteredProducts,
   getProductCategories,
 } from "@/actions/product-act";
 import { addToCartAction } from "@/actions/cart-act";
-import styles from "./page.module.css";
 import AddToCartButton from "@/components/AddToCartButton/AddToCartButton";
 import StarRating from "@/components/StarRating/StarRating";
 import ProductFilter from "@/components/ProductFilter/ProductFilter";
+import ProductImage from "@/components/ProductImage/ProductImage";
+import styles from "./page.module.css";
 
 interface ProductsPageProps {
   searchParams: Promise<{
@@ -72,12 +73,22 @@ export default async function Page({ searchParams }: ProductsPageProps) {
     categories.find((category) => category.id === activeCategoryId)?.name ??
     legacyCategoryName;
 
+  const hasActiveFilters = Boolean(
+    activeCategoryId ||
+    legacyCategoryName ||
+    query ||
+    minPrice ||
+    maxPrice ||
+    inStock ||
+    sort,
+  );
+
   return (
     <>
       <Navbar />
-      <main className={`products-page ${styles.main}`}>
-        <h1 className="page-title">Our Handcrafted Products</h1>
-        <p className="section-subtitle">
+      <main className={styles.main}>
+        <h1 className="title">Our Handcrafted Products</h1>
+        <p className="subtitle">
           {activeCategoryName && query
             ? `Showing results for "${query}" in ${activeCategoryName}.`
             : activeCategoryName
@@ -87,114 +98,115 @@ export default async function Page({ searchParams }: ProductsPageProps) {
                 : "Discover handmade pieces created by independent makers and small-batch artisans."}
         </p>
 
-        {(activeCategoryId ||
-          legacyCategoryName ||
-          query ||
-          minPrice ||
-          maxPrice ||
-          inStock ||
-          sort) && (
+        {hasActiveFilters && (
           <div className={styles.clearFilterWrap}>
-            <Link
-              href="/products"
-              className={`button button--light ${styles.clearFilterButton}`}
-            >
+            <Link href="/products" className={styles.clearFilterButton}>
               Clear filters
             </Link>
           </div>
         )}
 
         <div className={styles.catalogLayout}>
-          <ProductFilter
-          // category={categories}
-          // activeCategoryId={activeCategoryId}
-          // minPrice={minPrice}
-          // maxPrice={maxPrice}
-          // inStock={inStock === "1"}
-          // sort={sort}
-          />
+          <Suspense
+            fallback={
+              <div className={styles.filterFallback}>Loading filters…</div>
+            }
+          >
+            <ProductFilter
+              categories={categories}
+              activeCategoryId={activeCategoryId}
+              minPrice={minPrice}
+              maxPrice={maxPrice}
+              inStock={inStock === "1"}
+              sort={sort}
+            />
+          </Suspense>
 
           <section className={styles.catalogResults}>
-            <div className="products-grid">
-              {products.map((product: Product) => (
-                <article key={product.id} className="product-card">
-                  <Link
-                    href={`/products/${product.id}`}
-                    className="product-card__contentLink"
-                  >
-                    {product.images[0]?.url ? (
-                      <div className="product-card__image-wrap">
-                        <Image
-                          src={product.images[0].url}
-                          alt={product.name}
-                          fill
-                          sizes="(max-width: 640px) 100vw, (max-width: 1120px) 50vw, 33vw"
-                          className="product-card__image"
-                        />
-                      </div>
-                    ) : (
-                      <div
-                        className="product-card__placeholder"
-                        aria-hidden="true"
-                      >
-                        No image yet
-                      </div>
-                    )}
-                    <h2 className="product-card__title">{product.name}</h2>
-                  </Link>
+            <div className={styles.grid}>
+              {products.map((product: Product) => {
+                const averageRating =
+                  product.reviews.length > 0
+                    ? product.reviews.reduce(
+                        (sum, review) => sum + review.rating,
+                        0,
+                      ) / product.reviews.length
+                    : 0;
 
-                  {product.reviews.length > 0 ? (
-                    <StarRating
-                    // value={
-                    //   product.reviews.reduce(
-                    //     (sum, review) => sum + review.rating,
-                    //     0,
-                    //   ) / product.reviews.length
-                    // }
-                    // showValue
-                    />
-                  ) : (
-                    <p className="product-card__ratingEmpty">No reviews yet</p>
-                  )}
-
-                  <p className="product-card__price">
-                    ${product.price.toString()}
-                  </p>
-
-                  {product.stock > 0 ? (
-                    <form
-                      action={addToCartAction}
-                      className="product-card__actionForm"
+                return (
+                  <article key={product.id} className={styles.card}>
+                    <Link
+                      href={`/products/${product.id}`}
+                      className={styles.cardLink}
                     >
-                      <input
-                        type="hidden"
-                        name="productId"
-                        value={product.id}
-                      />
-                      <input
-                        type="hidden"
-                        name="redirectTo"
-                        value="/products"
-                      />
-                      <AddToCartButton
-                      // className="button button--dark product-card__actionButton"
-                      // idleText="Add to cart"
-                      // pendingText="Adding..."
-                      />
-                    </form>
-                  ) : (
-                    <p className="product-card__stockBadge" aria-live="polite">
-                      Sold out
-                    </p>
-                  )}
-                </article>
-              ))}
+                      <div className={styles.cardImageWrap}>
+                          <ProductImage
+                            src={product.images[0]?.url}
+                            alt={product.name}
+                            sizes="(max-width: 640px) 100vw, (max-width: 900px) 50vw, 33vw"
+                          />
+                        </div>
+                    </Link>
+
+                    <div className={styles.cardBody}>
+                      <h2 className={styles.cardTitle}>
+                        <Link href={`/products/${product.id}`}>
+                          {product.name}
+                        </Link>
+                      </h2>
+
+                      {product.reviews.length > 0 ? (
+                        <div className={styles.rating}>
+                          <StarRating value={averageRating} showValue />
+                          <span className={styles.ratingCount}>
+                            ({product.reviews.length})
+                          </span>
+                        </div>
+                      ) : (
+                        <p className={styles.ratingEmpty}>No reviews yet</p>
+                      )}
+
+                      <div className={styles.cardFooter}>
+                        <p className={styles.price}>
+                          ${product.price.toString()}
+                        </p>
+
+                        {product.stock > 0 ? (
+                          <form
+                            action={addToCartAction}
+                            className={styles.actionForm}
+                          >
+                            <input
+                              type="hidden"
+                              name="productId"
+                              value={product.id}
+                            />
+                            <input
+                              type="hidden"
+                              name="redirectTo"
+                              value="/products"
+                            />
+                            <AddToCartButton
+                              idleText="Add to cart"
+                              pendingText="Adding…"
+                            />
+                          </form>
+                        ) : (
+                          <p className={styles.stockBadge} aria-live="polite">
+                            Sold out
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  </article>
+                );
+              })}
             </div>
           </section>
         </div>
 
         {products.length === 0 && (
-          <p className={`section-subtitle ${styles.emptyState}`}>
+          <p className={`subtitle ${styles.emptyState}`}>
             No products found with the current filters.
           </p>
         )}

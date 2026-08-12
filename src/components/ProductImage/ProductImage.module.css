@@ -1,0 +1,8 @@
+.image {
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.image:hover {
+  transform: scale(1.05);
+}

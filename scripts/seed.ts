@@ -90,7 +90,7 @@ async function main() {
       stock: 12,
       categoryId: woodworking.id,
       artisanId: artisanFirst.id,
-      imageUrl: "https://images.unsplash.com/photo-1615865417236-d67f572a746f",
+      imageUrl: "https://images.unsplash.com/photo-1493106641515-6b5631de4bb9",
     },
     {
       name: "Oak Nesting Bowls (Set of 3)",
@@ -204,7 +204,7 @@ async function main() {
       stock: 22,
       categoryId: textiles.id,
       artisanId: artisanFourth.id,
-      imageUrl: "https://images.unsplash.com/photo-1528458901483-366556e4c700",
+      imageUrl: "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261",
     },
     {
       name: "Woven Canvas Tote Bag",
