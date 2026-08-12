@@ -28,6 +28,25 @@ const LogoutButton = () => {
   );
 };
 
+const CartButton = () => {
+  return (
+    <>
+      <div className={styles.element}>
+        <Link href={`/cart`}>
+          <Image
+            src={"/symbols/shopping_cart.svg"}
+            alt="shopping_cart"
+            width={32}
+            height={32}
+            unoptimized
+            className={styles.login}
+          ></Image>
+        </Link>
+      </div>
+    </>
+  );
+};
+
 const LoginButton = () => {
   return (
     <Link href={`/auth/login`} className={styles.element}>
@@ -88,6 +107,7 @@ export default async function Navbar() {
                 >
                   Dashboard
                 </Link>
+                <CartButton />
                 <LogoutButton />
               </>
             ) : (
