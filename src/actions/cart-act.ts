@@ -58,6 +58,15 @@ export async function addToCartAction(formData: FormData) {
           );
         }
 
+        const quantityInput = formData.get("quantity");
+        const requestedQuantity =
+          typeof quantityInput === "string" && quantityInput.trim() !== ""
+            ? parseInt(quantityInput, 10)
+            : 1;
+        const addQuantity = Number.isFinite(requestedQuantity)
+          ? Math.min(Math.max(requestedQuantity, 1), product.stock)
+          : 1;
+
         const cart = await tx.cart.upsert({
           where: { userId },
           update: {},
@@ -79,7 +88,7 @@ export async function addToCartAction(formData: FormData) {
 
         const currentQuantity = existingCartItem?.quantity ?? 0;
 
-        if (currentQuantity >= product.stock) {
+        if (currentQuantity + addQuantity > product.stock) {
           throw new CartValidationError(
             `You are already buying all of our ${product.name} stock!.`,
           );
@@ -94,13 +103,13 @@ export async function addToCartAction(formData: FormData) {
           },
           update: {
             quantity: {
-              increment: 1,
+              increment: addQuantity,
             },
           },
           create: {
             cartId: cart.id,
             productId,
-            quantity: 1,
+            quantity: addQuantity,
           },
         });
       },
