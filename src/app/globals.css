@@ -26,7 +26,7 @@
   --color-danger-border: #f3cdbf;
 
   /* Typography */
-  --font-heading: var(--font-caveat-brush);
+  --font-heading: var(--font-spicy-rice);
   --font-body: var(--font-quicksand);
 
   /* Spacing */
@@ -137,6 +137,8 @@ button {
   border-radius: var(--radius-md);
   font-weight: 600;
   cursor: pointer;
+  min-height: 55px;
+  font-size: 1rem;
   transition:
     background-color 0.15s ease,
     transform 0.15s ease,
@@ -160,6 +162,15 @@ button {
 
 .btn-secondary:hover {
   opacity: 0.85;
+}
+
+.btn-danger {
+  background: #d32f2f;
+  color: #fff;
+}
+
+.btn-danger:hover {
+  background: #b71c1c;
 }
 
 .btn:disabled {

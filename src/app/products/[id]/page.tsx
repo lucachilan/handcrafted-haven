@@ -28,9 +28,7 @@ export async function generateMetadata({
   });
 
   return {
-    title: product?.name
-      ? `${product.name} | Handcrafted Haven`
-      : "Product | Handcrafted Haven",
+    title: product?.name ?? "Product",
     description: product?.description ?? undefined,
   };
 }

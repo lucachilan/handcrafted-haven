@@ -1,23 +1,19 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import { cookies } from "next/headers";
-import { prisma } from "@/lib/prisma";
+import { Role } from "@prisma/client";
+import { getCurrentUser, homeForRole } from "@/lib/auth";
 
 export default async function CartRoute() {
-  const cookieStore = await cookies();
-  const userId = cookieStore.get("userId")?.value;
+  const user = await getCurrentUser();
 
-  if (!userId) {
+  if (!user) {
     redirect("/auth/login");
   }
 
-  const user = await prisma.user.findUnique({
-    where: { id: userId },
-  });
-  if (!user) {
-    redirect("/products");
-  }
-
-  redirect(`/dashboard/${user.role.trim().toLowerCase()}/cart`);
+  redirect(
+    user.role === Role.CUSTOMER
+      ? "/dashboard/customer/cart"
+      : homeForRole(user.role),
+  );
 }

@@ -98,13 +98,20 @@ export default async function Navbar() {
             </Link>
             {user ? (
               <>
-                <Link
-                  href={`/dashboard/${user.role.trim().toLowerCase()}/products`}
-                  className={styles.nav__link}
-                >
-                  Dashboard
-                </Link>
-                <CartButton />
+                {user.role === "CUSTOMER" ? (
+                  <>
+                    <CartButton />
+                  </>
+                ) : (
+                  <>
+                    <Link
+                      href={`/dashboard/${user.role.trim().toLowerCase()}/products`}
+                      className={styles.nav__link}
+                    >
+                      Dashboard
+                    </Link>
+                  </>
+                )}
                 <LogoutButton />
               </>
             ) : (

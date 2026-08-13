@@ -1,11 +1,27 @@
 import { prisma } from "@/lib/prisma";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
 import ArtisanProfile from "@/components/Artisan/ArtisanProfile";
 
 interface ArtisanProfilePage {
   params: Promise<{ id: string }>;
+}
+
+export async function generateMetadata({
+  params,
+}: ArtisanProfilePage): Promise<Metadata> {
+  const { id } = await params;
+  const artisan = await prisma.user.findFirst({
+    where: { id, role: "ARTISAN" },
+    select: { name: true, bio: true },
+  });
+
+  return {
+    title: artisan?.name ?? "Artisan",
+    description: artisan?.bio ?? undefined,
+  };
 }
 
 export default async function ArtisanProfilePage({

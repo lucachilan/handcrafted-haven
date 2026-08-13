@@ -3,6 +3,8 @@ import Footer from "@/components/Footer/Footer";
 import Link from "next/link";
 import RegisterCustomerForm from "../customer/RegisterCustomerForm";
 
+export const metadata = { title: "Join as a Customer" };
+
 export default function page() {
   return (
     <>

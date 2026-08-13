@@ -6,10 +6,22 @@ const columns = [
   {
     heading: "Shop",
     links: [
-      { label: "Ceramics", href: "/shop/ceramics" },
-      { label: "Textiles", href: "/shop/textiles" },
-      { label: "Jewelry", href: "/shop/jewelry" },
-      { label: "Woodwork", href: "/shop/woodwork" },
+      {
+        label: "Ceramics & Pottery",
+        href: `/products?category=${encodeURIComponent("Ceramics & Pottery")}`,
+      },
+      {
+        label: "Textiles & Living",
+        href: `/products?category=${encodeURIComponent("Textiles & Living")}`,
+      },
+      {
+        label: "Leather Goods",
+        href: `/products?category=${encodeURIComponent("Leather Goods")}`,
+      },
+      {
+        label: "Woodworking",
+        href: `/products?category=${encodeURIComponent("Woodworking")}`,
+      },
     ],
   },
   {
@@ -17,15 +29,14 @@ const columns = [
     links: [
       { label: "About Us", href: "/about" },
       { label: "Artisans", href: "/artisans" },
-      { label: "Blog", href: "/blog" },
     ],
   },
   {
     heading: "Account",
     links: [
       { label: "Sign In", href: "/auth/login" },
-      { label: "Orders", href: "/account/orders" },
-      { label: "Settings", href: "/account/settings" },
+      { label: "Orders", href: "/dashboard/customer/orders" },
+      { label: "Settings", href: "/dashboard/customer/settings" },
     ],
   },
 ];
@@ -62,8 +73,9 @@ export default function Footer() {
         </nav>
         <div className={`container ${styles.bottom}`}>
           <p>&copy;2026 | Handcrafted Haven</p>
-          <p className={styles.small}>Team 01</p>
+          <p className={styles.small}>Luca Chilan</p>
         </div>
+        <p className={styles.disclaimer}>Not a real store</p>
       </footer>
     </>
   );

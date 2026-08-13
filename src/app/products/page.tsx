@@ -47,6 +47,8 @@ interface ProductCategory {
   name: string;
 }
 
+export const metadata = { title: "Products" };
+
 export default async function Page({ searchParams }: ProductsPageProps) {
   const params = await searchParams;
   const activeCategoryId = params.categoryId?.trim();

@@ -1,0 +1,9 @@
+.form {
+  max-width: 40rem;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.deleteZone {
+  max-width: 40rem;
+}

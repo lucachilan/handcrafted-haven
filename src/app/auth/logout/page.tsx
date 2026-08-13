@@ -2,6 +2,8 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
 
+export const metadata = { title: "Sign Out" };
+
 export default function LogoutPage() {
   return (
     <>

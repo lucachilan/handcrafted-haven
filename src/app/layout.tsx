@@ -1,20 +1,28 @@
 import type { Metadata } from "next";
-import { Caveat_Brush, Quicksand, Caesar_Dressing } from "next/font/google";
+import {
+  Caveat_Brush,
+  Quicksand,
+  Caesar_Dressing,
+  Spicy_Rice,
+} from "next/font/google";
 import "./globals.css";
 
 /* ─── Metadata (SEO) ─── */
 export const metadata: Metadata = {
-  title: "Handcrafted Haven | Home",
-  description: "Homepage for Handcrafted Haven",
+  title: {
+    default: "Handcrafted Haven",
+    template: "%s | Handcrafted Haven",
+  },
+  description: "Handcrafted goods made by independent artisans.",
   icons: {
     icon: "/favicon-light.webp",
   },
 };
 
-const caveatBrush = Caveat_Brush({
+const caveatBrush = Spicy_Rice({
   weight: "400",
   subsets: ["latin"],
-  variable: "--font-caveat-brush",
+  variable: "--font-spicy-rice",
 });
 
 const quicksand = Quicksand({
@@ -32,9 +40,13 @@ export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) { 
+}>) {
   return (
-    <html lang="en" className={`${caveatBrush.variable} ${quicksand.variable} ${caesarDressing.variable}`} data-scroll-behavior="smooth">
+    <html
+      lang="en"
+      className={`${caveatBrush.variable} ${quicksand.variable} ${caesarDressing.variable}`}
+      data-scroll-behavior="smooth"
+    >
       <body className={quicksand.className}>{children}</body>
     </html>
   );

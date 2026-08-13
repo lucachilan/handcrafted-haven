@@ -1,26 +1,15 @@
-import Navbar from "@/components/Navbar/Navbar";
-import Footer from "@/components/Footer/Footer";
 import Link from "next/link";
-
-import { cookies } from "next/headers";
+import { Role } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
-import { redirect } from "next/navigation";
+import { requireRole } from "@/lib/auth";
+import DashboardShell from "@/components/DashboardShell/DashboardShell";
+import { deleteProduct } from "@/actions/product-act";
+import styles from "./page.module.css";
+
+export const metadata = { title: "Admin · Products" };
 
 export default async function AdminProductsPage() {
-  const cookieStore = await cookies();
-  const userId = cookieStore.get("userId")?.value;
-
-  if (!userId) {
-    redirect("/auth/login");
-  }
-
-  const user = await prisma.user.findUnique({
-    where: { id: userId },
-  });
-
-  if (!user || user.role !== "ADMIN") {
-    redirect("/products");
-  }
+  const user = await requireRole(Role.ADMIN);
 
   const products = await prisma.product.findMany({
     include: {
@@ -31,13 +20,70 @@ export default async function AdminProductsPage() {
   });
 
   return (
-    <>
-      <Navbar />
-      <main>
-        <h1 className={`title`}>Admin Products</h1>
-        <div ></div>
-      </main>
-      <Footer />
-    </>
+    <DashboardShell user={user} active="/dashboard/admin/products">
+      <h1 className="section-title">All Products</h1>
+
+      {products.length === 0 ? (
+        <div className="empty-state">
+          <p>No products in the catalog.</p>
+        </div>
+      ) : (
+        <div className={`card ${styles.tableCard}`}>
+          <table className={styles.table}>
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Category</th>
+                <th>Artisan</th>
+                <th>Stock</th>
+                <th>Price</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {products.map((product) => (
+                <tr key={product.id}>
+                  <td>
+                    <Link
+                      href={`/dashboard/admin/products/${product.id}/edit`}
+                      className={styles.productName}
+                    >
+                      {product.name}
+                    </Link>
+                  </td>
+                  <td>{product.category?.name ?? "—"}</td>
+                  <td>{product.artisan?.name ?? "—"}</td>
+                  <td>
+                    <span
+                      className={
+                        product.stock > 0
+                          ? "pill pill--success"
+                          : "pill pill--danger"
+                      }
+                    >
+                      {product.stock}
+                    </span>
+                  </td>
+                  <td>${product.price.toString()}</td>
+                  <td className={styles.actions}>
+                    <Link
+                      href={`/dashboard/admin/products/${product.id}/edit`}
+                      className="btn btn-secondary"
+                    >
+                      Edit
+                    </Link>
+                    <form action={deleteProduct.bind(null, product.id)}>
+                      <button type="submit" className="btn btn-danger">
+                        Delete
+                      </button>
+                    </form>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </DashboardShell>
   );
 }

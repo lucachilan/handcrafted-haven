@@ -4,6 +4,8 @@ import Footer from "@/components/Footer/Footer";
 import LoginForm from "./LoginForm";
 import Link from "next/link";
 
+export const metadata = { title: "Sign In" };
+
 export default async function Page() {
   return (
     <>

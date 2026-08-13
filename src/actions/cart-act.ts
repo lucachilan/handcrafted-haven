@@ -4,7 +4,8 @@ import { prisma } from "@/lib/prisma";
 import { cookies } from "next/headers";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { Prisma } from "@prisma/client";
+import { Prisma, Role } from "@prisma/client";
+import { homeForRole } from "@/lib/auth";
 
 class CartValidationError extends Error {
   constructor(message: string) {
@@ -35,6 +36,9 @@ export async function addToCartAction(formData: FormData) {
   });
   if (!user) {
     redirect("/products");
+  }
+  if (user.role !== Role.CUSTOMER) {
+    redirect(homeForRole(user.role));
   }
   try {
     await prisma.$transaction(
@@ -136,4 +140,108 @@ export async function addToCartAction(formData: FormData) {
   revalidatePath("/products");
 
   redirect(redirectTo);
+}
+
+export async function updateCartItemAction(formData: FormData) {
+  const cookieStore = await cookies();
+  const userId = cookieStore.get("userId")?.value;
+
+  if (!userId) {
+    redirect("/auth/login");
+  }
+
+  const user = await prisma.user.findUnique({
+    where: { id: userId },
+    select: { id: true, role: true },
+  });
+  if (!user) {
+    redirect("/products");
+  }
+  if (user.role !== Role.CUSTOMER) {
+    redirect(homeForRole(user.role));
+  }
+
+  const productId = formData.get("productId") as string;
+  const quantityInput = formData.get("quantity");
+  const requestedQuantity =
+    typeof quantityInput === "string" ? parseInt(quantityInput, 10) : NaN;
+
+  if (!productId || !Number.isFinite(requestedQuantity)) {
+    redirect("/dashboard/customer/cart");
+  }
+
+  const cart = await prisma.cart.findUnique({
+    where: { userId },
+    select: { id: true },
+  });
+  if (!cart) {
+    redirect("/dashboard/customer/cart");
+  }
+
+  const cartItem = await prisma.cartItem.findUnique({
+    where: {
+      cartId_productId: { cartId: cart.id, productId },
+    },
+    include: { product: { select: { stock: true } } },
+  });
+  if (!cartItem) {
+    redirect("/dashboard/customer/cart");
+  }
+
+  const quantity = Math.min(
+    Math.max(requestedQuantity, 1),
+    cartItem.product.stock,
+  );
+
+  await prisma.cartItem.update({
+    where: { id: cartItem.id },
+    data: { quantity },
+  });
+
+  revalidatePath("/dashboard/customer/cart");
+  revalidatePath("/products");
+
+  redirect("/dashboard/customer/cart");
+}
+
+export async function removeCartItemAction(formData: FormData) {
+  const cookieStore = await cookies();
+  const userId = cookieStore.get("userId")?.value;
+
+  if (!userId) {
+    redirect("/auth/login");
+  }
+
+  const user = await prisma.user.findUnique({
+    where: { id: userId },
+    select: { id: true, role: true },
+  });
+  if (!user) {
+    redirect("/products");
+  }
+  if (user.role !== Role.CUSTOMER) {
+    redirect(homeForRole(user.role));
+  }
+
+  const productId = formData.get("productId") as string;
+  if (!productId) {
+    redirect("/dashboard/customer/cart");
+  }
+
+  const cart = await prisma.cart.findUnique({
+    where: { userId },
+    select: { id: true },
+  });
+  if (!cart) {
+    redirect("/dashboard/customer/cart");
+  }
+
+  await prisma.cartItem.deleteMany({
+    where: { cartId: cart.id, productId },
+  });
+
+  revalidatePath("/dashboard/customer/cart");
+  revalidatePath("/products");
+
+  redirect("/dashboard/customer/cart");
 }

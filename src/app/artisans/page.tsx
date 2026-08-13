@@ -3,6 +3,8 @@ import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
 import ArtisanCard from "@/components/Artisan/ArtisanCard"; // Adjust import path if needed
 
+export const metadata = { title: "Artisans" };
+
 export default async function Page() {
   const artisans = await prisma.user.findMany({
     where: { role: "ARTISAN" },

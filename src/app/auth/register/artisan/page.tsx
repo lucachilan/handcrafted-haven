@@ -3,6 +3,8 @@ import Footer from "@/components/Footer/Footer";
 import Link from "next/link";
 import RegisterArtisanForm from "../artisan/RegisterArtisanForm";
 
+export const metadata = { title: "Join as an Artisan" };
+
 export default function page() {
   return (
     <>

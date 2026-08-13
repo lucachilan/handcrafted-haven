@@ -1,0 +1,18 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.card {
+  padding: 1.5rem;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.cardValue {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--color-secondary);
+}

@@ -1,0 +1,58 @@
+.tableCard {
+  padding: 0;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 0.9rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 0.95rem;
+}
+
+.table thead th {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-secondary);
+}
+
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.productName {
+  font-weight: 600;
+  color: var(--color-secondary);
+}
+
+.productName:hover {
+  color: var(--color-primary);
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.actions .btn {
+  padding: 0.4rem 0.85rem;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 800px) {
+  .tableCard {
+    overflow-x: auto;
+  }
+
+  .table {
+    min-width: 560px;
+  }
+}

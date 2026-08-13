@@ -10,6 +10,8 @@ interface SuccessPageProps {
   }>;
 }
 
+export const metadata = { title: "Order Placed" };
+
 export default async function SuccessPage({ searchParams }: SuccessPageProps) {
   const params = await searchParams;
   const message =

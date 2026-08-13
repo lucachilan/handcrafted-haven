@@ -1,0 +1,34 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+}
+
+.header .section-title {
+  margin-bottom: 0;
+}
+
+.imageWrap {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  background-color: var(--color-bg-darker);
+  overflow: hidden;
+}
+
+.image {
+  object-fit: cover;
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.actions .btn {
+  flex: 1;
+}

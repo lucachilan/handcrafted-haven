@@ -2,6 +2,8 @@ import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
 import styles from "@/app/about/page.module.css";
 
+export const metadata = { title: "About Us" };
+
 export default function AboutPage() {
   return (
     <>
