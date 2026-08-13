@@ -11,16 +11,19 @@
     "logo cols"
     "down down"
     "disc disc"
-    / auto 1fr;
+    / auto auto;
+  justify-content: center;
   gap: 2rem 3rem;
+  text-align: center;
 }
 
 /* ─── Brand / Logo area ─── */
 .brand {
   grid-area: logo;
   display: flex;
-  align-items: flex-start;
-  margin: 0 3rem 0 2rem;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
 
   & .logo {
     margin: auto;
@@ -32,6 +35,33 @@
   grid-area: cols;
   display: flex;
   gap: 3rem;
+}
+
+/* ─── Individual nav column ─── */
+.col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 8rem;
+}
+
+.colHeading {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
 }
 
 /* ─── Bottom copyright bar ─── */
@@ -101,5 +131,46 @@
   font-style: italic;
   &::before {
     content: "* ";
+  }
+}
+
+/* ─── Responsive: tablet ─── */
+@media (max-width: 1024px) {
+  .footer {
+    padding: 2.5rem 1.5rem 1.5rem;
+    gap: 2rem;
+  }
+
+  .cols {
+    gap: 1.5rem;
+  }
+}
+
+/* ─── Responsive: tablet/phone stacking ─── */
+@media (max-width: 900px) {
+  .footer {
+    grid-template:
+      "logo"
+      "cols"
+      "down"
+      "disc"
+      / 1fr;
+    padding: 2rem 1rem 1.5rem;
+    gap: 2rem;
+  }
+
+  .brand {
+    margin: 0;
+    justify-content: center;
+  }
+
+  .cols {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .bottom {
+    flex-wrap: wrap;
+    gap: 0.5rem;
   }
 }

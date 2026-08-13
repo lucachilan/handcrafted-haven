@@ -474,3 +474,42 @@ button {
   margin: auto;
   padding: 1rem 0;
 }
+
+/* ─── Responsive: tablet ─── */
+@media (max-width: 1024px) {
+  .title {
+    font-size: 3rem;
+  }
+
+  .t-small {
+    font-size: 2rem;
+  }
+}
+
+/* ─── Responsive: smartphone ─── */
+@media (max-width: 640px) {
+  .title {
+    font-size: 2.2rem;
+  }
+
+  .t-small {
+    font-size: 1.6rem;
+  }
+
+  .section-title {
+    font-size: 1.6rem;
+  }
+
+  .badge {
+    font-size: 1.5rem;
+  }
+
+  .section {
+    padding-top: var(--space-lg);
+    padding-bottom: var(--space-lg);
+  }
+
+  .container {
+    padding: 0 1rem;
+  }
+}

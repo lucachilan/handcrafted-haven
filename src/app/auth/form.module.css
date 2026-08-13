@@ -44,3 +44,28 @@
   text-align: center;
   padding: 0.5em 0 0;
 }
+
+/* ─── Responsive: tablet ─── */
+@media (max-width: 900px) {
+  .authForm {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+/* ─── Responsive: smartphone ─── */
+@media (max-width: 640px) {
+  .formField {
+    grid-template-columns: 1fr;
+    text-align: left;
+    gap: 0.35rem;
+  }
+
+  .formField .label {
+    margin: 0;
+  }
+
+  .submit {
+    transform: none;
+  }
+}

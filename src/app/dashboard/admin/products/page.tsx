@@ -29,18 +29,19 @@ export default async function AdminProductsPage() {
         </div>
       ) : (
         <div className={`card ${styles.tableCard}`}>
-          <table className={styles.table}>
-            <thead>
-              <tr>
-                <th>Product</th>
-                <th>Category</th>
-                <th>Artisan</th>
-                <th>Stock</th>
-                <th>Price</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
+          <div className={styles.tableScroll}>
+            <table className={styles.table}>
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Category</th>
+                  <th>Artisan</th>
+                  <th>Stock</th>
+                  <th>Price</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
               {products.map((product) => (
                 <tr key={product.id}>
                   <td>
@@ -82,6 +83,7 @@ export default async function AdminProductsPage() {
               ))}
             </tbody>
           </table>
+          </div>
         </div>
       )}
     </DashboardShell>

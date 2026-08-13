@@ -13,3 +13,9 @@
 .card h3 {
   color: var(--color-text-secondary);
 }
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -43,18 +43,19 @@ export default async function AdminUsersPage() {
       </p>
 
       <div className={`card ${styles.tableCard}`}>
-        <table className={styles.table}>
-          <thead>
-            <tr>
-              <th>User</th>
-              <th>Products</th>
-              <th>Orders</th>
-              <th>Role</th>
-              <th>Change role</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
+        <div className={styles.tableScroll}>
+          <table className={styles.table}>
+            <thead>
+              <tr>
+                <th>User</th>
+                <th>Products</th>
+                <th>Orders</th>
+                <th>Role</th>
+                <th>Change role</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
             {users.map((userRow) => {
               const isAdmin = userRow.role === Role.ADMIN;
 
@@ -116,7 +117,8 @@ export default async function AdminUsersPage() {
               );
             })}
           </tbody>
-        </table>
+          </table>
+        </div>
       </div>
     </DashboardShell>
   );

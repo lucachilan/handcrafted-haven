@@ -70,3 +70,9 @@
 .emptyState {
   margin-top: 2.5rem;
 }
+
+@media (max-width: 900px) {
+  .catalogLayout {
+    grid-template-columns: 1fr;
+  }
+}

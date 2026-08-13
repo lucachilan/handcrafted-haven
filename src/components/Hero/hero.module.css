@@ -72,3 +72,51 @@
         box-shadow: 1px 1px 10px var(--color-secondary);
     }
 }
+
+/* ─── Responsive: tablet ─── */
+@media (max-width: 1024px) {
+    .hero_wrapper {
+        height: 640px;
+    }
+
+    .hero_content {
+        height: 640px;
+        padding: 12rem 1.5rem 0;
+    }
+
+    .title {
+        font-size: 3.2rem;
+    }
+}
+
+/* ─── Responsive: smartphone ─── */
+@media (max-width: 640px) {
+    .hero_wrapper {
+        height: 520px;
+    }
+
+    .hero_content {
+        height: 520px;
+        padding: 9rem 1rem 0;
+        grid-template:
+            "title"
+            "buttons"
+            / 1fr;
+        gap: 2rem;
+    }
+
+    .title {
+        font-size: 2.4rem;
+    }
+
+    .ctaHero {
+        align-items: center;
+        padding: 0;
+    }
+
+    .ctaHero button {
+        width: 100%;
+        max-width: 240px;
+        font-size: 1.1rem;
+    }
+}

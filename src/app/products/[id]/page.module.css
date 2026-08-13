@@ -201,3 +201,27 @@
     max-width: 14rem;
   }
 }
+
+@media (max-width: 640px) {
+  .layout {
+    gap: 1.25rem;
+  }
+
+  .title {
+    font-size: 1.9rem;
+  }
+
+  .price {
+    font-size: 1.5rem;
+  }
+
+  .cartForm {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cartForm button[type="submit"] {
+    min-width: 0;
+    width: 100%;
+  }
+}

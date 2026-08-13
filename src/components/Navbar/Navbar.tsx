@@ -1,63 +1,11 @@
-"use server";
-
 import Image from "next/image";
 import Link from "next/link";
-// import NavbarSearch from "./NavbarSearch";
-// import { Suspense } from "react";
 import Blank from "@/components/Blank";
+import NavbarMenu from "@/components/Navbar/NavbarMenu";
 import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
-import { logoutAction } from "@/actions/auth-act";
 
 import styles from "@/components/Navbar/Navbar.module.css";
-
-const LogoutButton = () => {
-  return (
-    <form action={logoutAction}>
-      <button type="submit" className={styles.element} aria-label="logout">
-        <Image
-          src={`/symbols/logout.svg`}
-          alt="logout"
-          width={32}
-          height={32}
-          unoptimized
-        />
-      </button>
-    </form>
-  );
-};
-
-const CartButton = () => {
-  return (
-    <>
-      <div className={styles.element}>
-        <Link href={`/cart`}>
-          <Image
-            src={"/symbols/shopping_cart.svg"}
-            alt="shopping_cart"
-            width={32}
-            height={32}
-            unoptimized
-          ></Image>
-        </Link>
-      </div>
-    </>
-  );
-};
-
-const LoginButton = () => {
-  return (
-    <Link href={`/auth/login`} className={styles.element}>
-      <Image
-        src={`/symbols/login.svg`}
-        alt="login"
-        width={32}
-        height={32}
-        unoptimized
-      />
-    </Link>
-  );
-};
 
 export default async function Navbar() {
   const cookieStore = await cookies();
@@ -66,6 +14,7 @@ export default async function Navbar() {
   const user = userId
     ? await prisma.user.findUnique({ where: { id: userId } })
     : null;
+
   return (
     <>
       <Blank />
@@ -86,40 +35,7 @@ export default async function Navbar() {
               className={styles.logoIcon}
             />
           </Link>
-          <nav className={styles.nav} aria-label="Primary">
-            <Link href="/products" className={styles.nav__link}>
-              Products
-            </Link>
-            <Link href="/artisans" className={styles.nav__link}>
-              Artisans
-            </Link>
-            <Link href="/about" className={styles.nav__link}>
-              About us
-            </Link>
-            {user ? (
-              <>
-                {user.role === "CUSTOMER" ? (
-                  <>
-                    <CartButton />
-                  </>
-                ) : (
-                  <>
-                    <Link
-                      href={`/dashboard/${user.role.trim().toLowerCase()}/products`}
-                      className={styles.nav__link}
-                    >
-                      Dashboard
-                    </Link>
-                  </>
-                )}
-                <LogoutButton />
-              </>
-            ) : (
-              <>
-                <LoginButton />
-              </>
-            )}
-          </nav>
+          <NavbarMenu user={user ? { role: user.role } : null} />
         </div>
       </header>
     </>

@@ -1,10 +1,5 @@
 import type { Metadata } from "next";
-import {
-  Caveat_Brush,
-  Quicksand,
-  Caesar_Dressing,
-  Spicy_Rice,
-} from "next/font/google";
+import { Quicksand, Caesar_Dressing, Spicy_Rice } from "next/font/google";
 import "./globals.css";
 
 /* ─── Metadata (SEO) ─── */

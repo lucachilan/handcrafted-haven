@@ -119,3 +119,9 @@
   background-color: var(--color-secondary);
   color: #fff;
 }
+
+@media (max-width: 900px) {
+  .panel {
+    position: static;
+  }
+}
