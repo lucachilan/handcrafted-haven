@@ -88,7 +88,7 @@ export default async function Page({ searchParams }: ProductsPageProps) {
   return (
     <>
       <Navbar />
-      <main className={styles.main}>
+      <main className="container section">
         <h1 className="title">Our Handcrafted Products</h1>
         <p className="subtitle">
           {activeCategoryName && query
@@ -126,7 +126,7 @@ export default async function Page({ searchParams }: ProductsPageProps) {
           </Suspense>
 
           <section className={styles.catalogResults}>
-            <div className={styles.grid}>
+            <div className="grid-cards">
               {products.map((product: Product) => {
                 const averageRating =
                   product.reviews.length > 0
@@ -137,7 +137,7 @@ export default async function Page({ searchParams }: ProductsPageProps) {
                     : 0;
 
                 return (
-                  <article key={product.id} className={styles.card}>
+                  <article key={product.id} className="card card--hover">
                     <Link
                       href={`/products/${product.id}`}
                       className={styles.cardLink}
@@ -151,26 +151,26 @@ export default async function Page({ searchParams }: ProductsPageProps) {
                         </div>
                     </Link>
 
-                    <div className={styles.cardBody}>
-                      <h2 className={styles.cardTitle}>
+                    <div className="card__body">
+                      <h2 className="card__title">
                         <Link href={`/products/${product.id}`}>
                           {product.name}
                         </Link>
                       </h2>
 
                       {product.reviews.length > 0 ? (
-                        <div className={styles.rating}>
+                        <div className="rating-row">
                           <StarRating value={averageRating} showValue />
-                          <span className={styles.ratingCount}>
+                          <span className="rating-count">
                             ({product.reviews.length})
                           </span>
                         </div>
                       ) : (
-                        <p className={styles.ratingEmpty}>No reviews yet</p>
+                        <p className="rating-empty">No reviews yet</p>
                       )}
 
                       <div className={styles.cardFooter}>
-                        <p className={styles.price}>
+                        <p className="card__price">
                           ${product.price.toString()}
                         </p>
 
@@ -195,7 +195,10 @@ export default async function Page({ searchParams }: ProductsPageProps) {
                             />
                           </form>
                         ) : (
-                          <p className={styles.stockBadge} aria-live="polite">
+                          <p
+                            className="pill pill--danger"
+                            aria-live="polite"
+                          >
                             Sold out
                           </p>
                         )}

@@ -21,7 +21,6 @@ const LogoutButton = () => {
           width={32}
           height={32}
           unoptimized
-          className={styles.login}
         />
       </button>
     </form>
@@ -39,7 +38,6 @@ const CartButton = () => {
             width={32}
             height={32}
             unoptimized
-            className={styles.login}
           ></Image>
         </Link>
       </div>
@@ -56,7 +54,6 @@ const LoginButton = () => {
         width={32}
         height={32}
         unoptimized
-        className={styles.login}
       />
     </Link>
   );
@@ -76,7 +73,7 @@ export default async function Navbar() {
         <div className={styles.inner}>
           <Link
             href="/"
-            className={styles.logo}
+            className={styles.logoIcon}
             aria-label="Handcrafted Haven, home"
           >
             <Image

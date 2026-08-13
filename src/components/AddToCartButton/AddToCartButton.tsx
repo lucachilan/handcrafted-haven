@@ -1,7 +1,6 @@
 "use client";
 
 import { useFormStatus } from "react-dom";
-import styles from "./AddToCartButton.module.css";
 
 interface AddToCartButtonProps {
   className?: string;
@@ -19,7 +18,7 @@ export default function AddToCartButton({
   return (
     <button
       type="submit"
-      className={`${styles.button} ${className}`.trim()}
+      className={`btn btn-primary btn--block ${className}`.trim()}
       disabled={pending}
       aria-disabled={pending}
     >

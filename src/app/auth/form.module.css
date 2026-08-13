@@ -1,9 +1,7 @@
 .authForm {
-  background-color: #fff;
   width: 60%;
   max-width: 780px;
   min-width: 550px;
-  border-radius: var(--radius-md);
   padding: 1rem;
   margin: auto;
   box-shadow: var(--shadow-hv);
@@ -14,28 +12,21 @@
   grid-template-columns: 1fr 3fr;
   padding: 1rem;
   text-align: center;
+
   & .label {
     font-size: 1.3rem;
     margin: 0 1rem 0 0;
 
-    &:has(+ .input:required)::after {
+    &:has(+ :global(.input):required)::after {
       content: " *";
     }
   }
 
   & .input {
-    font-size: 1.3rem;
-    padding: 0.5rem;
-    border: 2px solid var(--color-secondary);
-    border-radius: var(--radius-sm);
-    transition: border-color 0.2s;
-    &:focus {
-      border-color: #4a90d9;
-      outline: none;
-    }
     &:invalid {
       border-color: var(--color-text-secondary);
     }
+
     &.input-error {
       border-color: var(--color-text-secondary);
     }
@@ -52,49 +43,4 @@
   display: block;
   text-align: center;
   padding: 0.5em 0 0;
-}
-
-.fieldError {
-  color: #d32f2f;
-  font-size: 0.85rem;
-  margin-top: 0.25rem;
-  font-weight: 500;
-}
-
-.fieldHint {
-  color: #666;
-  font-size: 0.85rem;
-  margin-top: 0.25rem;
-  line-height: 1.4;
-}
-
-.hosts {
-  display: blocks;
-  text-align: center;
-}
-
-.authOptions {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  max-width: 600px;
-  min-width: 300px;
-  padding: 1rem;
-  gap: 1rem 0;
-  margin: auto;
-  text-align: center;
-  & .otherAuth {
-    margin: auto;
-    display: block;
-    width: 30%;
-    text-align: center;
-    min-width: 250px;
-    max-width: 350px;
-    padding: 1rem 0;
-  }
-}
-
-.flex__vert {
-  display: flex;
-  flex-direction: column;
 }

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Caveat_Brush, Quicksand, Caesar_Dressing } from "next/font/google";
 import "./globals.css";
-import "./animation.module.css";
 
 /* ─── Metadata (SEO) ─── */
 export const metadata: Metadata = {

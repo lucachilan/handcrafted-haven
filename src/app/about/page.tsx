@@ -9,7 +9,7 @@ export default function AboutPage() {
 
       <main>
         {/* Hero Section */}
-        <section className={`${styles.section} ${styles.heroSection}`}>
+        <section className="section">
           <div className="container">
             <h1 className="title">Welcome to Handcrafted Haven</h1>
             <p className="subtitle">
@@ -20,7 +20,7 @@ export default function AboutPage() {
         </section>
 
         {/* Our Story Section */}
-        <section className={`${styles.section} ${styles.storySection}`}>
+        <section className="section">
           <div id="story" className="container">
             <h2 className={`title t-small`}>Our Story</h2>
             <p>
@@ -40,13 +40,13 @@ export default function AboutPage() {
         </section>
 
         {/* Our Mission Section */}
-        <section className={`${styles.section} ${styles.missionSection}`}>
+        <section className="section">
           <div className="container">
             <h2 id="mission" className={`title t-small`}>
               Our Mission
             </h2>
             <div className={styles.grid}>
-              <div className={styles.card}>
+              <div className={`card card--hover ${styles.card}`}>
                 <h3>Inspire Creativity</h3>
                 <p>
                   Whether you are a seasoned artisan or a curious beginner
@@ -55,7 +55,7 @@ export default function AboutPage() {
                   to life.
                 </p>
               </div>
-              <div className={styles.card}>
+              <div className={`card card--hover ${styles.card}`}>
                 <h3>Source Ethically</h3>
                 <p>
                   We are committed to sustainability. From organic yarns to
@@ -63,7 +63,7 @@ export default function AboutPage() {
                   share our deep respect for the environment and fair labor.
                 </p>
               </div>
-              <div className={styles.card}>
+              <div className={`card card--hover ${styles.card}`}>
                 <h3>Foster Community</h3>
                 <p>
                   Crafting is better together. We host weekly workshops, local

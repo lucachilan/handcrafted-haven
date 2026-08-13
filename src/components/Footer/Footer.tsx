@@ -42,7 +42,6 @@ export default function Footer() {
               width={250}
               height={80}
               unoptimized
-              className={styles.logoIcon}
               priority
             />
           </Link>

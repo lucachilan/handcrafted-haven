@@ -1,19 +1,18 @@
 import Link from "next/link";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
-import styles from "@/app/auth/form.module.css";
 
 export default function LogoutPage() {
   return (
     <>
       <Navbar />
-      <main className={`container ${styles.main}`}>
-        <section className={`surface-card ${styles.card}`}>
+      <main className="container section">
+        <section className="card card--pad">
           <span className="badge">Session Ended</span>
           <h1 className="title">You are now logged out</h1>
           <p className="subtitle">Thanks for visiting Handcrafted Haven.</p>
 
-          <div className={`${styles.flex__vert} ${styles.authOptions}`}>
+          <div className="auth-options">
             <Link href="/" className="btn btn-lg btn-primary btn-center">
               Continue browsing
             </Link>

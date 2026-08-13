@@ -101,7 +101,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
   return (
     <>
       <Navbar />
-      <main className={styles.main}>
+      <main className="container section">
         <nav aria-label="Breadcrumb" className={styles.breadcrumb}>
           <Link href="/products" className={styles.breadcrumbLink}>
             Products
@@ -130,22 +130,24 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
           <div className={styles.info}>
             {product.category && (
-              <p className={styles.category}>{product.category.name}</p>
+              <p className={`pill ${styles.category}`}>
+                {product.category.name}
+              </p>
             )}
 
             <h1 className={styles.title}>{product.name}</h1>
 
-            <div className={styles.ratingRow}>
+            <div className="rating-row">
               {product.reviews.length > 0 ? (
                 <>
                   <StarRating value={averageRating} showValue />
-                  <span className={styles.ratingCount}>
+                  <span className="rating-count">
                     ({product.reviews.length}{" "}
                     {product.reviews.length === 1 ? "review" : "reviews"})
                   </span>
                 </>
               ) : (
-                <p className={styles.ratingEmpty}>No reviews yet</p>
+                <p className="rating-empty">No reviews yet</p>
               )}
             </div>
 
@@ -154,7 +156,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
             {inStock ? (
               <p
                 className={
-                  lowStock ? styles.lowStockBadge : styles.stockBadge
+                  lowStock ? "pill pill--warning" : "pill pill--success"
                 }
                 aria-live="polite"
               >
@@ -163,7 +165,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                   : `In stock (${product.stock})`}
               </p>
             ) : (
-              <p className={styles.soldOutBadge} aria-live="polite">
+              <p className="pill pill--danger" aria-live="polite">
                 Sold out
               </p>
             )}
@@ -190,15 +192,13 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 href={`/artisans/${product.artisan.id}/profile`}
                 className={styles.artisanLink}
               >
-                <div className={styles.artisan}>
+                <div className={`card card--hover card--row ${styles.artisan}`}>
                   <span className={styles.artisanAvatar} aria-hidden="true">
                     {artisanInitial}
                   </span>
                   <div className={styles.artisanInfo}>
-                    <span className={styles.artisanLabel}>
-                      Handcrafted by
-                    </span>
-                    <span className={styles.artisanName}>
+                    <span className="eyebrow">Handcrafted by</span>
+                    <span className="card__title">
                       {product.artisan.name ?? "An artisan"}
                     </span>
                     {product.artisan.bio && (
@@ -214,12 +214,12 @@ export default async function ProductPage({ params }: ProductPageProps) {
         </div>
 
         <section className={styles.reviewsSection}>
-          <h2 className={styles.sectionTitle}>Customer reviews</h2>
+          <h2 className="section-title">Customer reviews</h2>
 
           {product.reviews.length > 0 ? (
             <ul className={styles.reviewsList}>
               {product.reviews.map((review) => (
-                <li key={review.id} className={styles.reviewItem}>
+                <li key={review.id} className={`card ${styles.reviewItem}`}>
                   <div className={styles.reviewHeader}>
                     <StarRating value={review.rating} showValue />
                     <span className={styles.reviewAuthor}>
@@ -249,7 +249,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
             </p>
           )}
 
-          <div className={styles.reviewFormWrap}>
+          <div className={`card ${styles.reviewFormWrap}`}>
             {userId ? (
               <ReviewForm productId={product.id} />
             ) : (
@@ -265,8 +265,8 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
         {relatedProducts.length > 0 && (
           <section className={styles.relatedSection}>
-            <h2 className={styles.sectionTitle}>You might also like</h2>
-            <div className={styles.relatedGrid}>
+            <h2 className="section-title">You might also like</h2>
+            <div className="grid-cards">
               {relatedProducts.map((related) => (
                 <ProductCard key={related.id} product={related} />
               ))}

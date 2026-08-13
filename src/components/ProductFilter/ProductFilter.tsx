@@ -177,8 +177,8 @@ export default function ProductFilter({
       <h2 className={styles.heading}>Filter products</h2>
 
       <div className={styles.form}>
-        <label className={styles.field}>
-          <span className={styles.label}>Category</span>
+        <div className="form-field">
+          <span className="form-label">Category</span>
           <select
             value={activeCategoryId ?? ""}
             onChange={(event) =>
@@ -187,7 +187,7 @@ export default function ProductFilter({
                 category: null,
               })
             }
-            className={styles.select}
+            className="input"
           >
             <option value="">All categories</option>
             {categories.map((category) => (
@@ -196,10 +196,10 @@ export default function ProductFilter({
               </option>
             ))}
           </select>
-        </label>
+        </div>
 
-        <div className={styles.field}>
-          <span className={styles.label}>Price range</span>
+        <div className="form-field">
+          <span className="form-label">Price range</span>
           <p className={styles.rangeValue} aria-live="polite">
             ${sliderMin} – ${sliderMax}
           </p>
@@ -257,14 +257,14 @@ export default function ProductFilter({
           <span>In stock only</span>
         </label>
 
-        <label className={styles.field}>
-          <span className={styles.label}>Sort by</span>
+        <div className="form-field">
+          <span className="form-label">Sort by</span>
           <select
             value={sort ?? ""}
             onChange={(event) =>
               updateParam({ sort: event.target.value || null })
             }
-            className={styles.select}
+            className="input"
           >
             <option value="">Recommended</option>
             <option value="name_asc">Name (A–Z)</option>
@@ -272,7 +272,7 @@ export default function ProductFilter({
             <option value="price_asc">Price: Low to High</option>
             <option value="price_desc">Price: High to Low</option>
           </select>
-        </label>
+        </div>
 
         <button type="button" onClick={clearAll} className={styles.clear}>
           Clear all filters

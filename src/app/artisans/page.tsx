@@ -20,7 +20,7 @@ export default async function Page() {
   });
 
   return (
-    <div className="min-h-screen flex flex-col justify-between bg-stone-50">
+    <div className="page-shell">
       <Navbar />
       <main>
         <h1 className="title">Meet Our Artisans</h1>
@@ -29,7 +29,7 @@ export default async function Page() {
         </p>
 
         {artisans.length === 0 ? (
-          <div className="no-artisans">No artisans found at this time.</div>
+          <div className="empty-state">No artisans found at this time.</div>
         ) : (
           <div className="artisans-list">
             {artisans.map((artisan) => (

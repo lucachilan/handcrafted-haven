@@ -4,16 +4,6 @@
   gap: 1rem;
 }
 
-.label {
-  display: block;
-  margin-bottom: 0.4rem;
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--color-text-secondary);
-}
-
 .stars {
   display: flex;
   gap: 0.25rem;
@@ -36,57 +26,6 @@
   color: var(--color-primary);
 }
 
-.field {
-  display: flex;
-  flex-direction: column;
-}
-
-.input,
-.textarea {
-  width: 100%;
-  padding: 0.6rem 0.7rem;
-  font-family: inherit;
-  font-size: 0.95rem;
-  color: var(--color-text);
-  background-color: var(--color-bg);
-  border: 2px solid var(--color-secondary);
-  border-radius: var(--radius-sm);
-  transition:
-    border-color 0.15s ease,
-    box-shadow 0.15s ease;
-}
-
-.input:focus,
-.textarea:focus {
-  outline: none;
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(255, 120, 40, 0.18);
-}
-
-.textarea {
-  resize: vertical;
-  min-height: 7rem;
-}
-
 .submit {
   align-self: flex-start;
-  padding: 0.6rem 1.4rem;
-  background-color: var(--color-primary);
-  color: #fff;
-  font-family: inherit;
-  font-size: 0.95rem;
-  font-weight: 700;
-  border: none;
-  border-radius: var(--radius-md);
-  cursor: pointer;
-  transition: background-color 0.15s ease;
-}
-
-.submit:hover:not(:disabled) {
-  background-color: #e5651a;
-}
-
-.submit:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
 }

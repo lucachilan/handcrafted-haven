@@ -8,7 +8,11 @@ import styles from "./ReviewForm.module.css";
 function SubmitButton() {
   const { pending } = useFormStatus();
   return (
-    <button type="submit" className={styles.submit} disabled={pending}>
+    <button
+      type="submit"
+      className={`btn btn-primary ${styles.submit}`}
+      disabled={pending}
+    >
       {pending ? "Submitting…" : "Post review"}
     </button>
   );
@@ -26,7 +30,7 @@ export default function ReviewForm({ productId }: ReviewFormProps) {
       <input type="hidden" name="productId" value={productId} />
 
       <div role="radiogroup" aria-label="Your rating">
-        <span className={styles.label}>Your rating</span>
+        <span className="form-label">Your rating</span>
         <div className={styles.stars}>
           {[1, 2, 3, 4, 5].map((star) => (
             <button
@@ -47,22 +51,22 @@ export default function ReviewForm({ productId }: ReviewFormProps) {
         <input type="hidden" name="rating" value={rating} />
       </div>
 
-      <label className={styles.field}>
-        <span className={styles.label}>Title (optional)</span>
+      <label className="form-field">
+        <span className="form-label">Title (optional)</span>
         <input
           type="text"
           name="title"
-          className={styles.input}
+          className="input"
           placeholder="e.g. Beautiful craftsmanship"
         />
       </label>
 
-      <label className={styles.field}>
-        <span className={styles.label}>Your review</span>
+      <label className="form-field">
+        <span className="form-label">Your review</span>
         <textarea
           name="body"
           rows={4}
-          className={styles.textarea}
+          className="textarea"
           placeholder="Share your experience with this piece..."
           required
         />

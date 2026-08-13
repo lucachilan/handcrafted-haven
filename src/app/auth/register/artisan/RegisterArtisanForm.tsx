@@ -33,7 +33,7 @@ export default function RegisterArtisanForm() {
   };
 
   return (
-    <form action={registerAction} className={styles.authForm}>
+    <form action={registerAction} className={`card ${styles.authForm}`}>
       <input type="hidden" name="role" value="ARTISAN" />
 
       <div className={styles.formField}>
@@ -45,7 +45,7 @@ export default function RegisterArtisanForm() {
           id="name"
           name="name"
           required
-          className={styles.input}
+          className={`input input--lg ${styles.input}`}
         />
       </div>
 
@@ -58,7 +58,7 @@ export default function RegisterArtisanForm() {
           id="email"
           name="email"
           required
-          className={styles.input}
+          className={`input input--lg ${styles.input}`}
         />
       </div>
 
@@ -71,7 +71,7 @@ export default function RegisterArtisanForm() {
           id="password"
           name="password"
           required
-          className={styles.input}
+          className={`input input--lg ${styles.input}`}
         />
       </div>
 
@@ -84,7 +84,7 @@ export default function RegisterArtisanForm() {
           id="profileImageUrl"
           name="profileImageUrl"
           placeholder="https://images.unsplash.com/..."
-          className={styles.input}
+          className={`input input--lg ${styles.input}`}
           value={profileImageUrl}
           onChange={(event) => {
             const nextValue = event.currentTarget.value;
@@ -106,7 +106,7 @@ export default function RegisterArtisanForm() {
         />
       </div>
 
-      <p id={profileImageHintId} className={styles.fieldHint}>
+      <p id={profileImageHintId} className="form-hint">
         Enter a public image URL (http/https). Accepted if the URL ends with
         .jpg, .jpeg, .png, .webp, .gif, or .svg, or if it is from a supported
         image host.
@@ -115,7 +115,7 @@ export default function RegisterArtisanForm() {
       {profileImageUrlError && (
         <p
           id={profileImageErrorId}
-          className={styles.fieldError}
+          className="form-error"
           role="alert"
           aria-live="polite"
         >

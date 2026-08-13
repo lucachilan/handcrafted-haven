@@ -18,11 +18,11 @@
     & .info {
         background-color: #fff;
         margin: 1rem 0;
-        border-radius: var(--radius-lg);;
+        border-radius: var(--radius-lg);
         padding: 1rem;
         
         & .artisan_name {
-            font-family: var(--font-header);
+            font-family: var(--font-heading);
             color: var(--color-text-secondary);
         }
     }

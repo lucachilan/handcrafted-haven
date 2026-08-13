@@ -13,7 +13,7 @@ export default function LoginForm() {
 
   return (
     <>
-      <form action={formAction} className={styles.authForm}>
+      <form action={formAction} className={`card ${styles.authForm}`}>
         <div className={styles.formField}>
           <label className={styles.label} htmlFor="email">
             Email
@@ -23,7 +23,7 @@ export default function LoginForm() {
             id="email"
             name="email"
             required
-            className={styles.input}
+            className={`input input--lg ${styles.input}`}
           />
         </div>
 
@@ -36,12 +36,12 @@ export default function LoginForm() {
             id="password"
             name="password"
             required
-            className={styles.input}
+            className={`input input--lg ${styles.input}`}
           />
         </div>
 
         {state.error && (
-          <p className={styles.formError} role="alert" aria-live="polite">
+          <p className="form-error" role="alert" aria-live="polite">
             {state.error}
           </p>
         )}

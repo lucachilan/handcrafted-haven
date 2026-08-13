@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
-import styles from "./page.module.css";
 
 interface SuccessPageProps {
   searchParams: Promise<{
@@ -21,8 +20,8 @@ export default async function SuccessPage({ searchParams }: SuccessPageProps) {
   return (
     <>
       <Navbar />
-      <main className={`container ${styles.main}`}>
-        <section className={`surface-card ${styles.card}`}>
+      <main className="container section">
+        <section className="card card--pad">
           <span className="badge">Success</span>
           <h1 className={`title`}>{message}</h1>
           <Link

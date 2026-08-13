@@ -2,7 +2,6 @@ import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
 // import Hero from "@/components/Hero/Hero";
 import LoginForm from "./LoginForm";
-import styles from "@/app/auth/form.module.css";
 import Link from "next/link";
 
 export default async function Page() {
@@ -15,11 +14,11 @@ export default async function Page() {
         </section>
         <div></div>
         <LoginForm />
-        <div className={styles.authOptions}>
-          <p className={`btn btn-lg btn-secondary ${styles.otherAuth}`}>
+        <div className="auth-options">
+          <p className="btn btn-lg btn-secondary">
             <Link href="/auth/register/customer">Create a new account</Link>
           </p>
-          <p className={`btn btn-lg btn-secondary ${styles.otherAuth}`}>
+          <p className="btn btn-lg btn-secondary">
             <Link href="/auth/register/artisan">Want to be an artisan?</Link>
           </p>
           `

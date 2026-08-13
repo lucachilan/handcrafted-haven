@@ -20,7 +20,10 @@ export default function ProductCard({ product }: ProductCardProps) {
   const [imgSrc, setImgSrc] = useState<string>(initialImage);
 
   return (
-    <Link href={`/products/${product.id}`} className={styles.card}>
+    <Link
+      href={`/products/${product.id}`}
+      className="card card--hover"
+    >
       <div className={styles.imageContainer}>
         <Image
           src={imgSrc}
@@ -35,12 +38,14 @@ export default function ProductCard({ product }: ProductCardProps) {
           }}
         />
       </div>
-      <div className={styles.content}>
+      <div className="card__body">
         {product.category && (
-          <p className={styles.category}>{product.category.name}</p>
+          <p className={`eyebrow ${styles.category}`}>
+            {product.category.name}
+          </p>
         )}
-        <h3 className={styles.name}>{product.name}</h3>
-        <p className={styles.price}>${product.price.toString()}</p>
+        <h3 className={`card__title ${styles.name}`}>{product.name}</h3>
+        <p className="card__price">${product.price.toString()}</p>
       </div>
     </Link>
   );

@@ -11,12 +11,12 @@ export default function Hero() {
                 <h1 id="hero-title" className={styles.title}>Modern Craft. Timeless pieces.</h1>
                 <div className={styles.ctaHero}>
                     <Link href="/products">
-                        <button className={styles.buy}>
+                        <button>
                             Shop
                         </button>
                     </Link>
                     <Link href="/artisans">
-                        <button className={styles.meet}>
+                        <button>
                             Meet the Artisans
                         </button>
                     </Link>

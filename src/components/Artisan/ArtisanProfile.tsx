@@ -26,7 +26,7 @@ export default function ArtisanProfile({ artisan }: ArtisanProfileProps) {
     const initialImage = artisan.profileImageUrl || PLACEHOLDER_IMAGE;
     const [imgSrc, setImgSrc] = useState<string>(initialImage);
     return (
-        <div className={styles.container}>
+        <div className="container section">
             {/* Profile Header */}
             <div className={styles.header}>
                 <div className={styles.avatarContainer}>
@@ -49,24 +49,24 @@ export default function ArtisanProfile({ artisan }: ArtisanProfileProps) {
                     <p className={styles.bio}>
                         {artisan.bio || "This artisan hasn't provided a bio yet."}
                     </p>
-                    <div className={styles.badge}>
+                    <div className="pill pill--neutral">
                         {artisan.productCount} {artisan.productCount === 1 ? "Product" : "Products"} Crafted
                     </div>
                 </div>
             </div>
 
             {/* Products Grid */}
-            <div className={styles.productsSection}>
-                <h2>Products by {artisan.name}</h2>
+            <div>
+                <h2 className="section-title">Products by {artisan.name}</h2>
                 
                 {artisan.products && artisan.products.length > 0 ? (
-                    <div className={styles.productsGrid}>
+                    <div className="grid-cards">
                         {artisan.products.map((product) => (
                             <ProductCard key={product.id} product={product} />
                         ))}
                     </div>
                 ) : (
-                    <div className={styles.emptyState}>
+                    <div className="empty-state">
                         <p>This artisan doesn&apos;t have any products yet.</p>
                     </div>
                 )}
